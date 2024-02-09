@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 const Pagination = () => {
   const [datas, setData] = useState([]);
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
   useEffect(() => {
     getData();
   }, []);
@@ -13,6 +13,10 @@ const Pagination = () => {
     const response = await data.json();
     console.log(response.products);
     setData(response.products);
+  };
+
+  const selectPageHanlder = (selectedpage) => {
+    setPage(selectedpage);
   };
 
   return (
@@ -31,6 +35,20 @@ const Pagination = () => {
               <p className="product-brand">Brand: {data.brand}</p>
             </div>
           ))}
+        </div>
+      )}
+      {datas.length > 0 && (
+        <div className="pagina">
+          <span onClick={() => setPage(page - 1)}>◀</span>
+          {[...Array(datas.length / 10)].map((_, i) => (
+            <span
+              className={page === i + 1 ? "selected" : ""}
+              onClick={() => selectPageHanlder(i + 1)}
+            >
+              {i + 1}
+            </span>
+          ))}
+          <span onClick={() => setPage(page + 1)}>▶</span>
         </div>
       )}
     </div>
