@@ -32,7 +32,7 @@ const Pagination = () => {
               />
               <h3 className="product-category">Category: {data.category}</h3>
               <h3 className="product-title">Name: {data.title}</h3>
-              <p className="product-brand">Brand: {data.brand}</p>
+              <p className="product-brand">Brand : {data.brand}</p>
             </div>
           ))}
         </div>
