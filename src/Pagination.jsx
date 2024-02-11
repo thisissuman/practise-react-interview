@@ -16,7 +16,12 @@ const Pagination = () => {
   };
 
   const selectPageHanlder = (selectedpage) => {
-    setPage(selectedpage);
+    if (
+      selectedpage >= 1 &&
+      selectedpage <= datas.length &&
+      selectedpage !== page
+    )
+      setPage(selectedpage);
   };
 
   return (
@@ -39,9 +44,10 @@ const Pagination = () => {
       )}
       {datas.length > 0 && (
         <div className="pagina">
-          <span onClick={() => setPage(page - 1)}>◀</span>
+          <span onClick={() => setPage(page - 1)} className={datas.length < 1 ? disabled: ""}>◀</span>
           {[...Array(datas.length / 10)].map((_, i) => (
             <span
+              key={i}
               className={page === i + 1 ? "selected" : ""}
               onClick={() => selectPageHanlder(i + 1)}
             >
