@@ -1,64 +1,43 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-const Pagination = () => {
-  const [datas, setData] = useState([]);
-  const [page, setPage] = useState(1);
-  useEffect(() => {
-    getData();
-  }, []);
+import React, { useState } from "react";
 
-  const getData = async () => {
-    const data = await fetch("https://dummyjson.com/products");
-    const response = await data.json();
-    console.log(response.products);
-    setData(response.products);
+const ToDoList = () => {
+  const [inputvalue, setInputvalue] = useState("");
+  const [submitvalue, setSubmitvalue] = useState([]);
+
+  const submitHandeler = (e) => {
+    setSubmitvalue([...submitvalue, inputvalue]);
+    setInputvalue("");
+    e.preventDefault();
   };
 
-  const selectPageHanlder = (selectedpage) => {
-    if (
-      selectedpage >= 1 &&
-      selectedpage <= datas.length &&
-      selectedpage !== page
-    )
-      setPage(selectedpage);
+  const Dleetehandler = (e, index) => {
+    setSubmitvalue(submitvalue.filter((_, i) => i !== index));
   };
 
   return (
-    <div>
-      {datas.length > 0 && (
-        <div className="ecommerce-container">
-          {datas.slice(page * 10 - 10, page * 10).map((data) => (
-            <div key={data.title} className="product-container">
-              <img
-                src={data.images[0]}
-                alt={data.title}
-                className="product-image"
-              />
-              <h3 className="product-category">Category: {data.category}</h3>
-              <h3 className="product-title">Name: {data.title}</h3>
-              <p className="product-brand">Brand : {data.brand}</p>
-            </div>
-          ))}
-        </div>
-      )}
-      {datas.length > 0 && (
-        <div className="pagina">
-          <span onClick={() => setPage(page - 1)} className={datas.length < 1 ? disabled: ""}>◀</span>
-          {[...Array(datas.length / 10)].map((_, i) => (
-            <span
-              key={i}
-              className={page === i + 1 ? "selected" : ""}
-              onClick={() => selectPageHanlder(i + 1)}
-            >
-              {i + 1}
-            </span>
-          ))}
-          <span onClick={() => setPage(page + 1)}>▶</span>
-        </div>
-      )}
+    <div className="todo-container">
+      <h1 className="todo-title">My TODO List App</h1>
+      <form onSubmit={submitHandeler}>
+        <input
+          type="text"
+          className="todo-input"
+          onChange={(e) => setInputvalue(e.target.value)}
+          value={inputvalue}
+          placeholder="type the task here"
+        />
+        <button type="submit" className="todo-button">+Add Task</button>
+      </form>
+      <ul className="todo-list">
+        {submitvalue.map((task, index) => (
+          <li key={index} className="todo-item">
+            <input type="checkbox" />
+            <span>{task}</span>
+            <button onClick={(e) => Dleetehandler(e, index)}>Delete</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default Pagination;
+export default ToDoList;

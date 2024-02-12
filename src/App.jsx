@@ -4,6 +4,7 @@ import Hobbies from "./Hobbies";
 import RadioPlay from "./RadioPlay";
 import CityDropdown from "./cityDropdown";
 import Pagination from "./Pagination";
+import ToDoList from "./ToDoList";
 
 const sections = ["Section 1", "Section 2", "Section 3"];
 const App = () => (
@@ -14,7 +15,8 @@ const App = () => (
     {/* {sections.map((section, index) => (
       <ChildSection key={index} title={section} />
     ))} */}
-    <Pagination />
+    {/* <Pagination /> */}
+    <ToDoList/>
   </>
 );
 

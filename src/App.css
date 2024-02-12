@@ -53,3 +53,62 @@
 .selected{
   background-color: blue;
 }
+
+
+/* App.css */
+
+.todo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.todo-title {
+  font-size: 2em;
+  color: #800080; /* purple */
+}
+
+.todo-input {
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: 1px solid #800080; /* purple */
+}
+
+.todo-button {
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  border: none;
+  background-color: #FFA500; /* orange */
+  color: white;
+  cursor: pointer;
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border-radius: 5px;
+  background-color: #800080; /* purple */
+  color: white;
+}
+
+.todo-item input[type="checkbox"] {
+  margin-right: 1em;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+.todo-item input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+}
