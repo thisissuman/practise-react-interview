@@ -10,8 +10,9 @@ const ToDoList = () => {
     e.preventDefault();
   };
 
-  const Dleetehandler = (e, index) => {
-    setSubmitvalue(submitvalue.filter((_, i) => i !== index));
+  const deleteHanlder = (index) => {
+    console.log(index);
+    setSubmitvalue(submitvalue.filter((_, i) => i != index));
   };
 
   const textStyle = {
@@ -30,22 +31,16 @@ const ToDoList = () => {
             placeholder="type the task here"
           />
           <label htmlFor="app">app</label>
-          <button
-            type="submit"
-            className="todo-button"
-          >
+          <button type="submit" className="todo-button">
             +Add Task
           </button>
         </form>
         <ul className="todo-list">
           {submitvalue.map((task, index) => (
-            <li
-              key={index}
-              className="todo-item"
-            >
+            <li key={index} className="todo-item">
               <input type="checkbox" />
               {task}
-              <button onClick={(e) => Dleetehandler(e, index)}>Delete</button>
+              <button onClick={() => deleteHanlder(index)}>Delete</button>
             </li>
           ))}
         </ul>
