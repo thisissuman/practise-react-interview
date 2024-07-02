@@ -15,8 +15,8 @@ const App = () => (
     {/* {sections.map((section, index) => (
       <ChildSection key={index} title={section} />
     ))} */}
-    {/* <Pagination /> */}
-    <ToDoList/>
+    <Pagination />
+    {/* <ToDoList/> */}
   </>
 );
 

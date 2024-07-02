@@ -11,7 +11,6 @@ const Pagination = () => {
   const getData = async () => {
     const data = await fetch("https://dummyjson.com/products");
     const response = await data.json();
-    console.log(response.products);
     setData(response.products);
   };
 

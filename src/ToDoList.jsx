@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ToDoList = () => {
+  const getLocalitems = () => {
+    const list = localStorage.getItem("list");
+    console.log(list);
+    if (list) {
+      return JSON.parse(localStorage.getItem("list"))
+    }
+  };
   const [inputvalue, setInputvalue] = useState("");
-  const [submitvalue, setSubmitvalue] = useState([]);
+  const [submitvalue, setSubmitvalue] = useState(getLocalitems());
 
   const submitHandeler = (e) => {
     setSubmitvalue([...submitvalue, inputvalue]);
@@ -10,8 +17,11 @@ const ToDoList = () => {
     e.preventDefault();
   };
 
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(submitvalue));
+  }, [submitvalue]);
+
   const deleteHanlder = (index) => {
-    console.log(index);
     setSubmitvalue(submitvalue.filter((_, i) => i != index));
   };
 
